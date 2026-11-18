@@ -15,7 +15,7 @@
     "accountNumber": "0000 0000 0000",
     "branch": "BDO Branch Name",
     "swiftCode": "BNORPHMM",
-    "qrImage": "qr-bdo.png"
+    "qrImage": "qr/bdo.png"
   },
-  "abroadPageUrl": ""
+  "abroadPageUrl": "https://brianblip.github.io/church-giving-qr/"
 }
