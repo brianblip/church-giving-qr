@@ -1,0 +1,21 @@
+{
+  "churchName": "Open Door Baptist Church Sual",
+  "title": "Tithes & Offering",
+  "verse": {
+    "text": "God loves a cheerful giver.",
+    "reference": "2 Corinthians 9:7"
+  },
+  "gcash": {
+    "accountName": "Open Door Baptist Church Sual",
+    "number": "0961 478 1237",
+    "qrImage": "gcash.png"
+  },
+  "bdo": {
+    "accountName": "Open Door Baptist Church Sual",
+    "accountNumber": "0000 0000 0000",
+    "branch": "BDO Branch Name",
+    "swiftCode": "BNORPHMM",
+    "qrImage": "qr-bdo.png"
+  },
+  "abroadPageUrl": ""
+}

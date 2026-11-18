@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{title}} · {{churchName}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400&family=Atkinson+Hyperlegible:wght@400;700&display=block" rel="stylesheet">
+<style>
+  :root {
+    --nave: #2A1638;      /* deep plum, the room in low light */
+    --wine: #4A1F3D;
+    --amber: #E8A33D;     /* glass, candle */
+    --rose: #B8456B;
+    --teal: #2F8F8A;
+    --candle: #FFF8EC;    /* text and cards */
+    --mute: #D9C8E0;
+    --lead: #1A0D24;      /* lead lines in the glass */
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--nave); }
+  body {
+    position: relative;
+    color: var(--candle);
+    font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+    background:
+      radial-gradient(1200px 900px at 78% 30%, #5a2a4c 0%, transparent 60%),
+      linear-gradient(160deg, var(--wine) 0%, var(--nave) 55%, #1f1029 100%);
+  }
+
+  /* Stained-glass window behind the codes */
+  .window { position: absolute; right: 70px; top: -30px; width: 900px; height: 1140px; }
+
+  .left {
+    position: absolute; left: 120px; top: 88px; bottom: 80px; width: 760px;
+    display: flex; flex-direction: column;
+  }
+  .church { font-size: 34px; color: var(--mute); letter-spacing: .01em; }
+  h1 {
+    font-family: "Fraunces", Georgia, serif; font-weight: 600;
+    font-size: 116px; line-height: .98; letter-spacing: -.015em;
+    margin-top: 14px; font-variation-settings: "opsz" 144;
+  }
+  .verse {
+    font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 400;
+    font-size: 38px; line-height: 1.3; color: var(--mute); margin-top: 22px;
+  }
+  .verse cite { display: block; font-style: normal; font-family: "Atkinson Hyperlegible", sans-serif; font-size: 28px; margin-top: 8px; opacity: .85; }
+
+  .steps { list-style: none; padding: 0; margin-top: 40px; display: grid; gap: 16px; }
+  .steps li { display: flex; align-items: center; gap: 24px; font-size: 38px; line-height: 1.2; }
+  .steps .n {
+    flex: none; width: 60px; height: 60px; border-radius: 50%;
+    background: var(--amber); color: var(--nave);
+    display: grid; place-items: center; font-weight: 700; font-size: 32px;
+  }
+
+  .abroad { margin-top: auto; display: flex; align-items: center; gap: 28px; }
+  .abroad .code { width: 160px; height: 160px; background: var(--candle); border-radius: 14px; padding: 10px; flex: none; }
+  .abroad .code img { width: 100%; height: 100%; display: block; }
+  .abroad p { font-size: 32px; line-height: 1.3; }
+  .abroad p b { display: block; font-size: 36px; }
+
+  .codes { position: absolute; right: 130px; top: 150px; display: flex; gap: 48px; }
+  .card {
+    width: 430px; background: var(--candle); color: var(--nave);
+    border-radius: 28px; padding: 30px 30px 32px; text-align: center;
+    box-shadow: 0 30px 80px rgba(10, 2, 18, .55), 0 0 0 6px rgba(255, 248, 236, .08);
+  }
+  .card .qr { width: 370px; height: 370px; display: grid; place-items: center; }
+  .card .qr img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .card h2 { font-size: 54px; font-weight: 700; margin-top: 22px; letter-spacing: -.01em; }
+  .card .name { font-size: 30px; margin-top: 6px; }
+  .card .num { font-size: 30px; margin-top: 2px; color: #5b4566; }
+  .card.gcash h2 { color: #0a4fd6; }
+  .card.bdo h2 { color: #14307a; }
+
+  .qr-missing {
+    width: 100%; height: 100%; border: 4px dashed #b9a6c4; border-radius: 16px;
+    display: flex; flex-direction: column; justify-content: center; text-align: center;
+    font-size: 26px; line-height: 1.35; color: #6d5878; padding: 20px;
+  }
+  .qr-missing.small { font-size: 17px; border-width: 3px; padding: 6px; }
+
+  .both { position: absolute; right: 130px; top: 940px; width: 908px; text-align: center; font-size: 30px; color: var(--mute); }
+</style>
+</head>
+<body>
+  <svg class="window" viewBox="0 0 900 1140" aria-hidden="true">
+    <defs>
+      <clipPath id="arch">
+        <path d="M60 1140 V520 C60 250 230 90 450 20 C670 90 840 250 840 520 V1140 Z"/>
+      </clipPath>
+      <linearGradient id="glass" x1="0" y1="0" x2="0.35" y2="1">
+        <stop offset="0" stop-color="#E8A33D"/>
+        <stop offset=".28" stop-color="#C4605E"/>
+        <stop offset=".55" stop-color="#7B3466"/>
+        <stop offset=".8" stop-color="#2F8F8A"/>
+        <stop offset="1" stop-color="#2A1638"/>
+      </linearGradient>
+      <radialGradient id="glow" cx=".5" cy=".18" r=".6">
+        <stop offset="0" stop-color="#FFE3A8" stop-opacity=".55"/>
+        <stop offset="1" stop-color="#FFE3A8" stop-opacity="0"/>
+      </radialGradient>
+      <pattern id="quarries" width="90" height="130" patternUnits="userSpaceOnUse">
+        <path d="M0 0 L90 130 M90 0 L0 130" stroke="#1A0D24" stroke-width="7" fill="none"/>
+      </pattern>
+      <linearGradient id="fadeDown" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+        <stop offset=".7" stop-color="#fff" stop-opacity=".75"/>
+        <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="fade"><rect width="900" height="1140" fill="url(#fadeDown)"/></mask>
+    </defs>
+    <g mask="url(#fade)" opacity=".5">
+      <g clip-path="url(#arch)">
+        <rect width="900" height="1140" fill="url(#glass)"/>
+        <rect width="900" height="1140" fill="url(#glow)"/>
+        <rect width="900" height="1140" fill="url(#quarries)"/>
+        <!-- mullions -->
+        <rect x="443" y="0" width="14" height="1140" fill="#1A0D24"/>
+        <rect x="0" y="560" width="900" height="12" fill="#1A0D24"/>
+      </g>
+      <path d="M60 1140 V520 C60 250 230 90 450 20 C670 90 840 250 840 520 V1140" fill="none" stroke="#1A0D24" stroke-width="22"/>
+    </g>
+  </svg>
+
+  <section class="left">
+    <div class="church">{{churchName}}</div>
+    <h1>{{title}}</h1>
+    <p class="verse">“{{verseText}}”<cite>{{verseReference}}</cite></p>
+
+    <ol class="steps">
+      <li><span class="n">1</span>Open GCash or your bank app</li>
+      <li><span class="n">2</span>Tap Scan QR and point at a code</li>
+      <li><span class="n">3</span>Type your amount and send</li>
+    </ol>
+
+    <div class="abroad">
+      <div class="code">{{{abroadQr}}}</div>
+      <p><b>Giving from abroad?</b>Scan this one with your phone camera.</p>
+    </div>
+  </section>
+
+  <section class="codes">
+    <div class="card gcash">
+      <div class="qr">{{{gcashQr}}}</div>
+      <h2>GCash</h2>
+      <div class="name">{{gcashName}}</div>
+      <div class="num">{{gcashNumber}}</div>
+    </div>
+    <div class="card bdo">
+      <div class="qr">{{{bdoQr}}}</div>
+      <h2>BDO</h2>
+      <div class="name">{{bdoName}}</div>
+      <div class="num">{{bdoAccount}}</div>
+    </div>
+  </section>
+
+  <p class="both">Both codes work with any Philippine bank or e‑wallet app.</p>
+</body>
+</html>
